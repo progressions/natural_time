@@ -5,8 +5,8 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "naturaltime"
-    gem.summary = %Q{TODO: one-line summary of your gem}
-    gem.description = %Q{TODO: longer description of your gem}
+    gem.summary = %Q{Smart enumeration of durations in natural language}
+    gem.description = %Q{Smart enumeration of durations in natural language--"4 hours, 3 minutes and 2 seconds"}
     gem.email = "progressions@gmail.com"
     gem.homepage = "http://github.com/progressions/naturaltime"
     gem.authors = ["Jeff Coleman"]
@@ -22,6 +22,7 @@ require 'spec/rake/spectask'
 Spec::Rake::SpecTask.new(:spec) do |spec|
   spec.libs << 'lib' << 'spec'
   spec.spec_files = FileList['spec/**/*_spec.rb']
+  spec.spec_opts = ['-c']
 end
 
 Spec::Rake::SpecTask.new(:rcov) do |spec|
