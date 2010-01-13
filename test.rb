@@ -1,4 +1,4 @@
-require 'lib/naturaltime'
+require 'lib/natural_time'
 
 puts "Enter number of seconds: "
 s = $stdin.gets

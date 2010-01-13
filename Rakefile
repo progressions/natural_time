@@ -10,7 +10,8 @@ begin
     gem.email = "progressions@gmail.com"
     gem.homepage = "http://github.com/progressions/natural_time"
     gem.authors = ["Jeff Coleman"]
-    gem.add_development_dependency "rspec", ">= 1.2.9"
+    gem.add_development_dependency "rspec", ">= 1.2.6"
+    gem.add_development_dependency "activesupport", ">= 0"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
   Jeweler::GemcutterTasks.new
