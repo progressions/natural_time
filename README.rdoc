@@ -1,6 +1,11 @@
-= naturaltime
+= natural_time
 
-Description goes here.
+NaturalTime outputs a duration in natural language.
+
+65 seconds becomes "1 minute, 5 seconds".
+
+120 seconds becomes "2 minutes".
+
 
 == Note on Patches/Pull Requests
  
