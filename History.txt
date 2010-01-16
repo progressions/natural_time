@@ -1,0 +1,3 @@
+== 0.0.2 2010-01-13
+  * major enhancements
+    * outputs duration of time in natural language
