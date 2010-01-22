@@ -4,15 +4,32 @@ NaturalTime outputs a duration in natural language.
 
 == Usage
 
-  NaturalTime.new(65).to_sentence         #=> "1 minute, 5 seconds"
+=== Sentence
+
+The <tt>to_sentence</tt> method will output the duration in time in natural language
+and formatted like a sentence.
+
+  NaturalTime.new(65).to_sentence         #=> "1 minute and 5 seconds"
 
   NaturalTime.new(120).to_sentence        #=> "2 minutes"
 
-NaturalTime instances can also be output to an array:
+  NaturalTime.new(10000).to_sentence      #=> "2 hours, 46 minutes, and 40 seconds"
 
-  NaturalTime.new(65).to_array            #=> ["1 minutes", "5 seconds"]
+=== String
+
+The <tt>to_s</tt> command will separate the units with commas but with no "and":
+
+  NaturalTime.new(65).to_s                #=> "1 minute, 5 seconds"
+
+  NaturalTime.new(10000).to_s             #=> "2 hours, 46 minutes, 40 seconds"
   
-  NaturalTime.new(120).to_array           #=> ["2 minutes"]
+=== Array
+
+NaturalTime instances can also be output to an array with <tt>to_a</tt>:
+
+  NaturalTime.new(65).to_a                #=> ["1 minutes", "5 seconds"]
+  
+  NaturalTime.new(120).to_a               #=> ["2 minutes"]
   
 == Options
 
