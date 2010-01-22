@@ -199,6 +199,53 @@ describe "Naturaltime" do
     it "should return remainder in months and days and hours and minutes and seconds" do
       NaturalTime.new(1.year + 1.month + 1.week + 1.day + 1.hour + 5.minutes + 5.seconds).natural_time.should == "1 year, 1 month, 1 week, 1 day, 1 hour, 5 minutes, 5 seconds"
     end
+  
+    describe "precision" do
+      it "should limit the precision to 1" do
+        NaturalTime.new(1.week + 1.minutes + 1.second, :precision => 1).natural_time.should == "1 week"
+      end
+      
+      it "should limit the precision to 2" do
+        NaturalTime.new(1.week + 1.minutes + 1.second, :precision => 2).natural_time.should == "1 week, 1 minute"
+      end
+      
+      it "should show the distance with precision of 1 in the past" do
+        distance = -1 * (1.week + 1.minutes + 1.second)
+        NaturalTime.new(distance, :precision => 1).distance.should == "1 week ago"
+      end
+      
+      it "should show the distance with precision of 2 in the past" do
+        distance = -1 * (1.week + 1.minutes + 1.second)
+        NaturalTime.new(distance, :precision => 2).distance.should == "1 week and 1 minute ago"
+      end
+      
+      it "should show the distance with precision of 1 in the future" do
+        distance = (1.week + 1.minutes + 1.second)
+        NaturalTime.new(distance, :precision => 1).distance.should == "1 week from now"
+      end
+      
+      it "should show the distance with precision of 2 in the future" do
+        distance = (1.week + 1.minutes + 1.second)
+        NaturalTime.new(distance, :precision => 2).distance.should == "1 week and 1 minute from now"
+      end
+    end
+    
+    describe "distances" do
+      it "should give the distance in the past" do
+        NaturalTime.new(-1).distance.should == "1 second ago"
+      end
+      
+      it "should give the distance in the past" do
+        NaturalTime.new(-2).distance.should == "2 seconds ago"
+      end
+      it "should give the distance in the future" do
+        NaturalTime.new(1).distance.should == "1 second from now"
+      end
+      
+      it "should give the distance in the future" do
+        NaturalTime.new(2).distance.should == "2 seconds from now"
+      end
+    end
   end
   
   describe "to_s" do
@@ -208,17 +255,51 @@ describe "Naturaltime" do
         @natural_time.to_s.should == @natural_time.natural_time
       end
     end
+  
+    describe "precision" do
+      it "should limit the precision to 1" do
+        NaturalTime.new(1.week + 1.minutes + 1.second, :precision => 1).to_s.should == "1 week"
+      end
+      
+      it "should limit the precision to 2" do
+        NaturalTime.new(1.week + 1.minutes + 1.second, :precision => 2).to_s.should == "1 week, 1 minute"
+      end
+    end
   end
   
   describe "to_sentence" do
     it "should put 'and' before the last entry in the list" do
       NaturalTime.new(1.minute + 1.second).to_sentence.should == "1 minute and 1 second"
     end
+  
+    describe "precision" do
+      it "should limit the precision to 1" do
+        NaturalTime.new(1.week + 1.minutes + 1.second, :precision => 1).to_sentence.should == "1 week"
+      end
+      
+      it "should limit the precision to 2" do
+        NaturalTime.new(1.week + 1.minutes + 1.second, :precision => 2).to_sentence.should == "1 week and 1 minute"
+      end
+    end
   end
   
   describe "to_array" do
     it "should return an array" do
       NaturalTime.new(1.minutes + 1.second).to_array.should == ["1 minute", "1 second"]
+    end
+    
+    it "should return an array" do
+      NaturalTime.new(1.minutes + 1.second).to_a.should == ["1 minute", "1 second"]
+    end
+  
+    describe "precision" do
+      it "should limit the precision to 1" do
+        NaturalTime.new(1.week + 1.minutes + 1.second, :precision => 1).to_a.should == ["1 week"]
+      end
+      
+      it "should limit the precision to 2" do
+        NaturalTime.new(1.week + 1.minutes + 1.second, :precision => 2).to_a.should == ["1 week", "1 minute"]
+      end
     end
   end
 end
