@@ -13,6 +13,38 @@ NaturalTime instances can also be output to an array:
   NaturalTime.new(65).to_array            #=> ["1 minutes", "5 seconds"]
   
   NaturalTime.new(120).to_array           #=> ["2 minutes"]
+  
+== Options
+
+= Precision
+
+NaturalTime can return the amount of time to a specific precision.  If all you want is the greatest unit:
+
+  NaturalTime.new(65, :precision => 1).to_sentence     #=> "1 minute"
+  
+  NaturalTime.new(10000, :precision => 1).to_sentence  #=> "2 hours"
+  
+  NaturalTime.new(10000, :precision => 2).to_sentence  #=> "2 hours and 46 minutes"
+
+= Distance
+
+If you want to use NaturalTime to show an elapsed time and you don't care if it's in the
+past or the future, use the <tt>natural_time</tt> or <tt>to_sentence</tt> methods, or the
+<tt>to_a</tt> method if you need the units in an array.
+
+If you're measuring distances that may be in the past or the future, the <tt>distance</tt>
+method will return a sentence indicating how long ago or in the future is your duration.
+
+  NaturalTime.new(65).distance                      #=> "1 minute and 5 seconds from now"
+  
+  NaturalTime.new(-65).distance                     #=> "1 minute and 5 seconds ago"
+  
+It works with <tt>:precision</tt> too:
+  
+  NaturalTime.new(10000, :precision => 1).distance  #=> "2 hours from now"
+  
+  NaturalTime.new(-10000, :precision => 2).distance #=> "2 hours and 46 minutes ago"
+
 
 == Note on Patches/Pull Requests
  
