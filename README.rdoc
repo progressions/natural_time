@@ -16,7 +16,7 @@ NaturalTime instances can also be output to an array:
   
 == Options
 
-= Precision
+=== Precision
 
 NaturalTime can return the amount of time to a specific precision.  If all you want is the greatest unit:
 
@@ -26,7 +26,7 @@ NaturalTime can return the amount of time to a specific precision.  If all you w
   
   NaturalTime.new(10000, :precision => 2).to_sentence  #=> "2 hours and 46 minutes"
 
-= Distance
+=== Distance
 
 If you want to use NaturalTime to show an elapsed time and you don't care if it's in the
 past or the future, use the <tt>natural_time</tt> or <tt>to_sentence</tt> methods, or the
