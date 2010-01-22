@@ -30,8 +30,6 @@ NaturalTime instances can also be output to an array with <tt>to_a</tt>:
   NaturalTime.new(65).to_a                #=> ["1 minutes", "5 seconds"]
   
   NaturalTime.new(120).to_a               #=> ["2 minutes"]
-  
-== Options
 
 === Precision
 
