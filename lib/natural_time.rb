@@ -44,6 +44,8 @@ class NaturalTime
   end
   
   def elapsed_time(duration_in_seconds)
+    return "0 seconds" if duration_in_seconds <= 0
+
     elapsed_time = []
 
     seconds_left = duration_in_seconds
