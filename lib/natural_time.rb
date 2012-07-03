@@ -28,7 +28,7 @@ class NaturalTime
   end
   
   def to_a
-    elapsed_time(duration)
+    [elapsed_time(duration)].flatten
   end
   
   def to_array
