@@ -1,5 +1,6 @@
 require 'rubygems'
-require 'active_support'
+require 'active_support/core_ext/integer'
+require 'active_support/core_ext/numeric'
 
 class NaturalTime
   attr_accessor :duration, :precision, :past
