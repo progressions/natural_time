@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    natural_time (0.4.0)
+    natural_time (0.4.1)
       activesupport (~> 5.1.4)
 
 GEM
