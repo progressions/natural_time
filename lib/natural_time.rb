@@ -28,11 +28,11 @@ require 'active_support/core_ext/integer/time'
 #
 # ### Array
 #
-# NaturalTime instances can also be output to an array with `to_a`:
+# NaturalTime instances can also be output to an array with `to_array`:
 #
-#     NaturalTime.to_a(65)                #=> ["1 minutes", "5 seconds"]
+#     NaturalTime.to_array(65)                #=> ["1 minutes", "5 seconds"]
 #
-#     NaturalTime.to_a(120)               #=> ["2 minutes"]
+#     NaturalTime.to_array(120)               #=> ["2 minutes"]
 #
 # ### Precision
 #
@@ -48,7 +48,7 @@ require 'active_support/core_ext/integer/time'
 #
 # If you want to use NaturalTime to show an elapsed time and you don't care if it's in the
 # past or the future, use the `natural_time` or `to_sentence` methods, or the
-# `to_a` method if you need the units in an array.
+# `to_array` method if you need the units in an array.
 #
 # If you're measuring distances that may be in the past or the future, the `distance`
 # method will return a sentence indicating how long ago or in the future is your duration.
@@ -163,29 +163,12 @@ module NaturalTime
     # @return [Array<String>]
     #
     # @example
-    #   NaturalTime.to_a(65)                #=> ["1 minutes", "5 seconds"]
+    #   NaturalTime.to_array(65)                #=> ["1 minutes", "5 seconds"]
     #
-    #   NaturalTime.to_a(120)               #=> ["2 minutes"]
-    #
-    def to_a(duration, precision: nil)
-      [elapsed_time(duration, precision: precision)].flatten
-    end
-
-    # Return the natural-language elements of a duration in an array.
-    #
-    # @param [Integer] duration a duration in time
-    # @param [Integer] precision level of precision for the
-    #   natural-language representation
-    #
-    # @return [Array<String>]
-    #
-    # @example
-    #   NaturalTime.to_array(65)            #=> ["1 minutes", "5 seconds"]
-    #
-    #   NaturalTime.to_array(120)           #=> ["2 minutes"]
+    #   NaturalTime.to_array(120)               #=> ["2 minutes"]
     #
     def to_array(duration, precision: nil)
-      to_a(duration, precision: precision)
+      [elapsed_time(duration, precision: precision)].flatten
     end
 
     private

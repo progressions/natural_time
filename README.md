@@ -25,11 +25,11 @@ The `to_s` command will separate the units with commas but with no "and":
 
 ### Array
 
-NaturalTime instances can also be output to an array with `to_a`:
+NaturalTime instances can also be output to an array with `to_array`:
 
-    NaturalTime.to_a(65)                #=> ["1 minutes", "5 seconds"]
+    NaturalTime.to_array(65)                #=> ["1 minutes", "5 seconds"]
 
-    NaturalTime.to_a(120)               #=> ["2 minutes"]
+    NaturalTime.to_array(120)               #=> ["2 minutes"]
 
 ### Precision
 

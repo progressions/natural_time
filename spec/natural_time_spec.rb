@@ -286,20 +286,20 @@ RSpec.describe NaturalTime do
 
   describe "to_array" do
     it "returns an array" do
-      expect(NaturalTime.to_a(1.minutes + 1.second)).to eq ["1 minute", "1 second"]
+      expect(NaturalTime.to_array(1.minutes + 1.second)).to eq ["1 minute", "1 second"]
     end
 
     it "returns an array" do
-      expect(NaturalTime.to_a(1.minutes + 1.second)).to eq ["1 minute", "1 second"]
+      expect(NaturalTime.to_array(1.minutes + 1.second)).to eq ["1 minute", "1 second"]
     end
 
     describe "precision" do
       it "limit the precision to 1" do
-        expect(NaturalTime.to_a(1.week + 1.minutes + 1.second, :precision => 1)).to eq ["1 week"]
+        expect(NaturalTime.to_array(1.week + 1.minutes + 1.second, :precision => 1)).to eq ["1 week"]
       end
 
       it "limit the precision to 2" do
-        expect(NaturalTime.to_a(1.week + 1.minutes + 1.second, :precision => 2)).to eq ["1 week", "1 minute"]
+        expect(NaturalTime.to_array(1.week + 1.minutes + 1.second, :precision => 2)).to eq ["1 week", "1 minute"]
       end
     end
   end
