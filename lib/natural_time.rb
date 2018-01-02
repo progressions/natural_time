@@ -75,11 +75,11 @@ module NaturalTime
     # @return [String]
     #
     # @example
-    #   NaturalTime.to_sentence(65)         #=> "1 minute and 5 seconds"
+    #   NaturalTime.natural_time(65)         #=> "1 minute, 5 seconds"
     #
-    #   NaturalTime.to_sentence(120)        #=> "2 minutes"
+    #   NaturalTime.natural_time(120)        #=> "2 minutes"
     #
-    #   NaturalTime.to_sentence(10000)      #=> "2 hours, 46 minutes, and 40 seconds"
+    #   NaturalTime.natural_time(10000)      #=> "2 hours, 46 minutes, 40 seconds"
     #
     def natural_time(duration, precision: nil)
       to_array(duration, precision: precision).join(", ")
