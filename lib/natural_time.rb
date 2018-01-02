@@ -36,7 +36,8 @@ require 'active_support/core_ext/integer/time'
 #
 # ### Precision
 #
-# NaturalTime can return the amount of time to a specific precision.  If all you want is the greatest unit:
+# NaturalTime can return the amount of time to a specific precision. If all
+# you want is the greatest unit:
 #
 #     NaturalTime.to_sentence(65, precision: 1)    #=> "1 minute"
 #
