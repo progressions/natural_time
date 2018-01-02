@@ -5,43 +5,140 @@ module NaturalTime
   UNITS_OF_TIME = [["year", "years"], ["month", "months"], ["week", "weeks"], ["day", "days"], ["hour", "hours"], ["minute", "minutes"]]
 
   class << self
-    def natural_time(duration_in_seconds, options={})
-      to_array(duration_in_seconds, options).join(", ")
+    # Return a natural-language representation of a duration in time.
+    #
+    # @param [Integer] duration a duration in time
+    # @param [Integer] precision level of precision for the
+    #   natural-language representation
+    #
+    # @return [String]
+    #
+    # @example
+    #   NaturalTime.to_sentence(65)         #=> "1 minute and 5 seconds"
+    #
+    #   NaturalTime.to_sentence(120)        #=> "2 minutes"
+    #
+    #   NaturalTime.to_sentence(10000)      #=> "2 hours, 46 minutes, and 40 seconds"
+    #
+    def natural_time(duration, precision: nil)
+      to_array(duration, precision: precision).join(", ")
     end
 
-    def distance(duration_in_seconds, options={})
-      if duration_in_seconds < 1
+    # Return a natural-language representation of a distance in time, relative
+    # to now.
+    #
+    # @param [Integer] duration a duration in time
+    # @param [Integer] precision level of precision for the
+    #   natural-language representation
+    #
+    # @return [String]
+    #
+    # @example
+    #   If you're measuring distances that may be in the past or the future, the `distance`
+    #   method will return a sentence indicating how long ago or in the future is your duration.
+    #
+    #   NaturalTime.distance(65)                      #=> "1 minute and 5 seconds from now"
+    #
+    #   NaturalTime.distance(-65)                     #=> "1 minute and 5 seconds ago"
+    #
+    # @example
+    #   It works with `:precision` too:
+    #
+    #   NaturalTime.distance(10000, precision: 1)     #=> "2 hours from now"
+    #
+    #   NaturalTime.distance(-10000, precision: 2)    #=> "2 hours and 46 minutes ago"
+    #
+    def distance(duration, precision: nil)
+      if duration < 1
         modifier = "ago"
       else
         modifier = "from now"
       end
-      "#{to_sentence(duration_in_seconds, options)} #{modifier}"
+      "#{to_sentence(duration, precision: precision)} #{modifier}"
     end
 
-    def to_string(duration, options={})
-      natural_time(duration, options)
+    # Return a natural-language representation of a duration in time, separating the
+    # units with commas but with no "and".
+    #
+    # @param [Integer] duration a duration in time
+    # @param [Integer] precision level of precision for the
+    #   natural-language representation
+    #
+    # @return [String]
+    #
+    # @example
+    #
+    #   NaturalTime.to_s(65)                #=> "1 minute, 5 seconds"
+    #
+    #   NaturalTime.to_s(10000)             #=> "2 hours, 46 minutes, 40 seconds"
+    #
+    def to_string(duration, precision: nil)
+      natural_time(duration, precision: precision)
     end
 
-    def to_sentence(duration, options={})
-      to_array(duration, options).to_sentence
+    # Return the duration in time in natural-language and formatted like a sentence.
+    #
+    # @param [Integer] duration a duration in time
+    # @param [Integer] precision level of precision for the
+    #   natural-language representation
+    #
+    # @return [String]
+    #
+    # @example
+    #   NaturalTime.to_sentence(65)         #=> "1 minute and 5 seconds"
+    #
+    #   NaturalTime.to_sentence(120)        #=> "2 minutes"
+    #
+    #   NaturalTime.to_sentence(10000)      #=> "2 hours, 46 minutes, and 40 seconds"
+    #
+    def to_sentence(duration, precision: nil)
+      to_array(duration, precision: precision).to_sentence
     end
 
-    def to_a(duration, options={})
-      [elapsed_time(duration, options)].flatten
+    # Return the natural-language elements of a duration in an array.
+    #
+    # @param [Integer] duration a duration in time
+    # @param [Integer] precision level of precision for the
+    #   natural-language representation
+    #
+    # @return [Array<String>]
+    #
+    # @example
+    #   NaturalTime.to_a(65)                #=> ["1 minutes", "5 seconds"]
+    #
+    #   NaturalTime.to_a(120)               #=> ["2 minutes"]
+    #
+    def to_a(duration, precision: nil)
+      [elapsed_time(duration, precision: precision)].flatten
     end
 
-    def to_array(duration, options={})
-      to_a(duration, options)
+    # Return the natural-language elements of a duration in an array.
+    #
+    # @param [Integer] duration a duration in time
+    # @param [Integer] precision level of precision for the
+    #   natural-language representation
+    #
+    # @return [Array<String>]
+    #
+    # @example
+    #   NaturalTime.to_array(65)            #=> ["1 minutes", "5 seconds"]
+    #
+    #   NaturalTime.to_array(120)           #=> ["2 minutes"]
+    #
+    def to_array(duration, precision: nil)
+      to_a(duration, precision: precision)
     end
 
-    def elapsed_time(duration_in_seconds, options={})
-      duration_in_seconds = duration_in_seconds.to_i.abs
+    private
 
-      return "0 seconds" if duration_in_seconds <= 0
+    def elapsed_time(duration, precision: nil)
+      duration = duration.to_i.abs
+
+      return "0 seconds" if duration <= 0
 
       elapsed_time = []
 
-      seconds_left = duration_in_seconds
+      seconds_left = duration
 
       UNITS_OF_TIME.each do |period|
         amount = (seconds_left / 1.send(period.first)).to_i
@@ -54,8 +151,8 @@ module NaturalTime
       str = seconds == 1 ? "second" : "seconds"
       elapsed_time << "#{seconds.to_i} #{str}" unless (seconds == 0 && elapsed_time.compact.length > 0)
 
-      if options[:precision]
-        elapsed_time.compact.first(options[:precision])
+      if precision
+        elapsed_time.compact.first(precision)
       else
         elapsed_time.compact
       end

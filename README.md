@@ -9,27 +9,27 @@ NaturalTime outputs a duration in natural language.
 The `to_sentence` method will output the duration in time in natural language
 and formatted like a sentence.
 
-    NaturalTime.to_sentence(65)         #> "1 minute and 5 seconds"
+    NaturalTime.to_sentence(65)         #=> "1 minute and 5 seconds"
 
-    NaturalTime.to_sentence(120)        #> "2 minutes"
+    NaturalTime.to_sentence(120)        #=> "2 minutes"
 
-    NaturalTime.to_sentence(10000)      #> "2 hours, 46 minutes, and 40 seconds"
+    NaturalTime.to_sentence(10000)      #=> "2 hours, 46 minutes, and 40 seconds"
 
 ### String
 
 The `to_s` command will separate the units with commas but with no "and":
 
-    NaturalTime.to_s(65)                #> "1 minute, 5 seconds"
+    NaturalTime.to_s(65)                #=> "1 minute, 5 seconds"
 
-    NaturalTime.to_s(10000)             #> "2 hours, 46 minutes, 40 seconds"
+    NaturalTime.to_s(10000)             #=> "2 hours, 46 minutes, 40 seconds"
 
 ### Array
 
 NaturalTime instances can also be output to an array with `to_a`:
 
-    NaturalTime.to_a(65)                #> ["1 minutes", "5 seconds"]
+    NaturalTime.to_a(65)                #=> ["1 minutes", "5 seconds"]
 
-    NaturalTime.to_a(120)               #> ["2 minutes"]
+    NaturalTime.to_a(120)               #=> ["2 minutes"]
 
 ### Precision
 
@@ -50,9 +50,9 @@ past or the future, use the `natural_time` or `to_sentence` methods, or the
 If you're measuring distances that may be in the past or the future, the `distance`
 method will return a sentence indicating how long ago or in the future is your duration.
 
-    NaturalTime.distance(65)                      #> "1 minute and 5 seconds from now"
+    NaturalTime.distance(65)                      #=> "1 minute and 5 seconds from now"
 
-    NaturalTime.distance(-65)                     #> "1 minute and 5 seconds ago"
+    NaturalTime.distance(-65)                     #=> "1 minute and 5 seconds ago"
 
 It works with `:precision` too:
 
