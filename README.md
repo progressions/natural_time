@@ -35,11 +35,11 @@ NaturalTime instances can also be output to an array with <tt>to_a</tt>:
 
 NaturalTime can return the amount of time to a specific precision.  If all you want is the greatest unit:
 
-    NaturalTime.new(65, :precision#> 1).to_sentence    #=> "1 minute"
+    NaturalTime.new(65, precision: 1).to_sentence    #=> "1 minute"
 
-    NaturalTime.new(10000, :precision#> 1).to_sentence #=> "2 hours"
+    NaturalTime.new(10000, precision: 1).to_sentence #=> "2 hours"
 
-    NaturalTime.new(10000, :precision#> 2).to_sentence #=> "2 hours and 46 minutes"
+    NaturalTime.new(10000, precision: 2).to_sentence #=> "2 hours and 46 minutes"
 
 ### Distance
 
@@ -56,9 +56,9 @@ method will return a sentence indicating how long ago or in the future is your d
 
 It works with <tt>:precision</tt> too:
 
-    NaturalTime.new(10000, :precision#> 1).distance #=> "2 hours from now"
+    NaturalTime.new(10000, precision: 1).distance #=> "2 hours from now"
 
-    NaturalTime.new(-10000, :precision#> 2).distance#=> "2 hours and 46 minutes ago"
+    NaturalTime.new(-10000, precision: 2).distance#=> "2 hours and 46 minutes ago"
 
 
 ## Note on Patches/Pull Requests
