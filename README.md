@@ -2,9 +2,9 @@
 
 NaturalTime outputs a duration in natural language.
 
-# Usage
+## Usage
 
-## Sentence
+### Sentence
 
 The <tt>to_sentence</tt> method will output the duration in time in natural language
 and formatted like a sentence.
@@ -15,7 +15,7 @@ and formatted like a sentence.
 
     NaturalTime.new(10000).to_sentence      #> "2 hours, 46 minutes, and 40 seconds"
 
-## String
+### String
 
 The <tt>to_s</tt> command will separate the units with commas but with no "and":
 
@@ -23,7 +23,7 @@ The <tt>to_s</tt> command will separate the units with commas but with no "and":
 
     NaturalTime.new(10000).to_s             #> "2 hours, 46 minutes, 40 seconds"
 
-## Array
+### Array
 
 NaturalTime instances can also be output to an array with <tt>to_a</tt>:
 
@@ -31,7 +31,7 @@ NaturalTime instances can also be output to an array with <tt>to_a</tt>:
 
     NaturalTime.new(120).to_a               #> ["2 minutes"]
 
-## Precision
+### Precision
 
 NaturalTime can return the amount of time to a specific precision.  If all you want is the greatest unit:
 
@@ -41,7 +41,7 @@ NaturalTime can return the amount of time to a specific precision.  If all you w
 
     NaturalTime.new(10000, :precision#> 2).to_sentence #=> "2 hours and 46 minutes"
 
-## Distance
+### Distance
 
 If you want to use NaturalTime to show an elapsed time and you don't care if it's in the
 past or the future, use the <tt>natural_time</tt> or <tt>to_sentence</tt> methods, or the
@@ -61,7 +61,7 @@ It works with <tt>:precision</tt> too:
     NaturalTime.new(-10000, :precision#> 2).distance#=> "2 hours and 46 minutes ago"
 
 
-# Note on Patches/Pull Requests
+## Note on Patches/Pull Requests
 
 * Fork the project.
 * Make your feature addition or bug fix.
@@ -71,6 +71,6 @@ It works with <tt>:precision</tt> too:
   (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
 * Send me a pull request. Bonus points for topic branches.
 
-# Copyright
+## Copyright
 
 Copyright (c) 2018 Isaac Priestley. See LICENSE for details.
