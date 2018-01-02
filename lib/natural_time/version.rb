@@ -1,3 +1,3 @@
-class NaturalTime
-  VERSION = "0.3.0"
+module NaturalTime
+  VERSION = "0.4.0"
 end

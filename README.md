@@ -6,59 +6,61 @@ NaturalTime outputs a duration in natural language.
 
 ### Sentence
 
-The <tt>to_sentence</tt> method will output the duration in time in natural language
+The `to_sentence` method will output the duration in time in natural language
 and formatted like a sentence.
 
-    NaturalTime.new(65).to_sentence         #> "1 minute and 5 seconds"
+    NaturalTime.to_sentence(65)         #=> "1 minute and 5 seconds"
 
-    NaturalTime.new(120).to_sentence        #> "2 minutes"
+    NaturalTime.to_sentence(120)        #=> "2 minutes"
 
-    NaturalTime.new(10000).to_sentence      #> "2 hours, 46 minutes, and 40 seconds"
+    NaturalTime.to_sentence(10000)      #=> "2 hours, 46 minutes, and 40 seconds"
 
 ### String
 
-The <tt>to_s</tt> command will separate the units with commas but with no "and":
+The `to_s` command will separate the units with commas but with no "and":
 
-    NaturalTime.new(65).to_s                #> "1 minute, 5 seconds"
+    NaturalTime.to_s(65)                #=> "1 minute, 5 seconds"
 
-    NaturalTime.new(10000).to_s             #> "2 hours, 46 minutes, 40 seconds"
+    NaturalTime.to_s(10000)             #=> "2 hours, 46 minutes, 40 seconds"
 
 ### Array
 
-NaturalTime instances can also be output to an array with <tt>to_a</tt>:
+NaturalTime instances can also be output to an array with `to_array`:
 
-    NaturalTime.new(65).to_a                #> ["1 minutes", "5 seconds"]
+    NaturalTime.to_array(65)                #=> ["1 minutes", "5 seconds"]
 
-    NaturalTime.new(120).to_a               #> ["2 minutes"]
+    NaturalTime.to_array(120)               #=> ["2 minutes"]
 
 ### Precision
 
-NaturalTime can return the amount of time to a specific precision.  If all you want is the greatest unit:
+NaturalTime can return the amount of time to a specific precision. If all you
+want is the greatest unit:
 
-    NaturalTime.new(65, precision: 1).to_sentence    #=> "1 minute"
+    NaturalTime.to_sentence(65, precision: 1)    #=> "1 minute"
 
-    NaturalTime.new(10000, precision: 1).to_sentence #=> "2 hours"
+    NaturalTime.to_sentence(10000, precision: 1) #=> "2 hours"
 
-    NaturalTime.new(10000, precision: 2).to_sentence #=> "2 hours and 46 minutes"
+    NaturalTime.to_sentence(10000, precision: 2) #=> "2 hours and 46 minutes"
 
 ### Distance
 
-If you want to use NaturalTime to show an elapsed time and you don't care if it's in the
-past or the future, use the <tt>natural_time</tt> or <tt>to_sentence</tt> methods, or the
-<tt>to_a</tt> method if you need the units in an array.
+If you want to use NaturalTime to show an elapsed time and you don't care if
+it's in the past or the future, use the `natural_time` or `to_sentence`
+methods, or the `to_a` method if you need the units in an array.
 
-If you're measuring distances that may be in the past or the future, the <tt>distance</tt>
-method will return a sentence indicating how long ago or in the future is your duration.
+If you're measuring distances that may be in the past or the future, the
+`distance` method will return a sentence indicating how long ago or in
+the future is your duration.
 
-    NaturalTime.new(65).distance                      #> "1 minute and 5 seconds from now"
+    NaturalTime.distance(65)                      #=> "1 minute and 5 seconds from now"
 
-    NaturalTime.new(-65).distance                     #> "1 minute and 5 seconds ago"
+    NaturalTime.distance(-65)                     #=> "1 minute and 5 seconds ago"
 
-It works with <tt>:precision</tt> too:
+It works with `:precision` too:
 
-    NaturalTime.new(10000, precision: 1).distance #=> "2 hours from now"
+    NaturalTime.distance(10000, precision: 1)     #=> "2 hours from now"
 
-    NaturalTime.new(-10000, precision: 2).distance#=> "2 hours and 46 minutes ago"
+    NaturalTime.distance(-10000, precision: 2)    #=> "2 hours and 46 minutes ago"
 
 
 ## Note on Patches/Pull Requests
