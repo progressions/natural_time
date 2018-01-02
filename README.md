@@ -62,6 +62,11 @@ It works with `:precision` too:
 
     NaturalTime.distance(-10000, precision: 2)    #=> "2 hours and 46 minutes ago"
 
+### Documentation
+
+Documentation can be generated with:
+
+    yard doc -m markdown
 
 ## Note on Patches/Pull Requests
 
