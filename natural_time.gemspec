@@ -1,47 +1,37 @@
-Gem::Specification.new do |s|
-  s.name = "natural_time"
-  s.version = "0.2.1"
 
-  s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Isaac Priestley"]
-  s.date = "2013-08-26"
-  s.description = "Smart enumeration of durations in natural language--\"4 hours, 3 minutes and 2 seconds\""
-  s.email = "progressions@gmail.com"
-  s.extra_rdoc_files = [
-    "LICENSE",
-    "README.rdoc"
-  ]
-  s.files = [
-    ".document",
-    ".ruby-version",
-    "Gemfile",
-    "Gemfile.lock",
-    "History.txt",
-    "LICENSE",
-    "README.rdoc",
-    "Rakefile",
-    "VERSION",
-    "lib/natural_time.rb",
-    "natural_time.gemspec",
-    "spec/natural_time_spec.rb",
-    "spec/spec.opts",
-    "spec/spec_helper.rb"
-  ]
-  s.homepage = "http://github.com/progressions/natural_time"
-  s.require_paths = ["lib"]
-  s.rubygems_version = "1.8.12"
-  s.summary = "Smart enumeration of durations in natural language"
+lib = File.expand_path("../lib", __FILE__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+require "natural_time/version"
 
-  if s.respond_to? :specification_version then
-    s.specification_version = 3
+Gem::Specification.new do |spec|
+  spec.name          = "natural_time"
+  spec.version       = NaturalTime::VERSION
+  spec.authors       = ["Isaac Priestley"]
+  spec.email         = ["progressions@gmail.com"]
 
-    if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<activesupport>, [">= 0"])
-    else
-      s.add_dependency(%q<activesupport>, [">= 0"])
-    end
+  spec.summary       = "Smart enumeration of durations in natural language"
+  spec.description   = "Smart enumeration of durations in natural language--\"4 hours, 3 minutes and 2 seconds\""
+  spec.homepage      = "https://github.com/progressions/natural_time"
+
+  # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
+  # to allow pushing to a single host or delete this section to allow pushing to any host.
+  if spec.respond_to?(:metadata)
+    spec.metadata["allowed_push_host"] = "TODO: Set to 'http://mygemserver.com'"
   else
-    s.add_dependency(%q<activesupport>, [">= 0"])
+    raise "RubyGems 2.0 or newer is required to protect against " \
+      "public gem pushes."
   end
-end
 
+  spec.files         = `git ls-files -z`.split("\x0").reject do |f|
+    f.match(%r{^(test|spec|features)/})
+  end
+  spec.bindir        = "exe"
+  spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
+  spec.require_paths = ["lib"]
+
+  spec.add_development_dependency "bundler", "~> 1.16"
+  spec.add_development_dependency "pry", "~> 0.11"
+  spec.add_development_dependency "rake", "~> 10.0"
+  spec.add_development_dependency "rspec", "~> 3.0"
+  spec.add_dependency "activesupport", "~> 5.1.4"
+end
