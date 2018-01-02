@@ -1,35 +1,76 @@
 # NaturalTime
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/natural_time`. To experiment with that code, run `bin/console` for an interactive prompt.
+NaturalTime outputs a duration in natural language.
 
-TODO: Delete this and the text above, and describe your gem
+# Usage
 
-## Installation
+## Sentence
 
-Add this line to your application's Gemfile:
+The <tt>to_sentence</tt> method will output the duration in time in natural language
+and formatted like a sentence.
 
-```ruby
-gem 'natural_time'
-```
+    NaturalTime.new(65).to_sentence         #> "1 minute and 5 seconds"
 
-And then execute:
+    NaturalTime.new(120).to_sentence        #> "2 minutes"
 
-    $ bundle
+    NaturalTime.new(10000).to_sentence      #> "2 hours, 46 minutes, and 40 seconds"
 
-Or install it yourself as:
+## String
 
-    $ gem install natural_time
+The <tt>to_s</tt> command will separate the units with commas but with no "and":
 
-## Usage
+    NaturalTime.new(65).to_s                #> "1 minute, 5 seconds"
 
-TODO: Write usage instructions here
+    NaturalTime.new(10000).to_s             #> "2 hours, 46 minutes, 40 seconds"
 
-## Development
+## Array
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+NaturalTime instances can also be output to an array with <tt>to_a</tt>:
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+    NaturalTime.new(65).to_a                #> ["1 minutes", "5 seconds"]
 
-## Contributing
+    NaturalTime.new(120).to_a               #> ["2 minutes"]
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/natural_time.
+## Precision
+
+NaturalTime can return the amount of time to a specific precision.  If all you want is the greatest unit:
+
+    NaturalTime.new(65, :precision#> 1).to_sentence    #=> "1 minute"
+
+    NaturalTime.new(10000, :precision#> 1).to_sentence #=> "2 hours"
+
+    NaturalTime.new(10000, :precision#> 2).to_sentence #=> "2 hours and 46 minutes"
+
+## Distance
+
+If you want to use NaturalTime to show an elapsed time and you don't care if it's in the
+past or the future, use the <tt>natural_time</tt> or <tt>to_sentence</tt> methods, or the
+<tt>to_a</tt> method if you need the units in an array.
+
+If you're measuring distances that may be in the past or the future, the <tt>distance</tt>
+method will return a sentence indicating how long ago or in the future is your duration.
+
+    NaturalTime.new(65).distance                      #> "1 minute and 5 seconds from now"
+
+    NaturalTime.new(-65).distance                     #> "1 minute and 5 seconds ago"
+
+It works with <tt>:precision</tt> too:
+
+    NaturalTime.new(10000, :precision#> 1).distance #=> "2 hours from now"
+
+    NaturalTime.new(-10000, :precision#> 2).distance#=> "2 hours and 46 minutes ago"
+
+
+# Note on Patches/Pull Requests
+
+* Fork the project.
+* Make your feature addition or bug fix.
+* Add tests for it. This is important so I don't break it in a
+  future version unintentionally.
+* Commit, do not mess with rakefile, version, or history.
+  (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
+* Send me a pull request. Bonus points for topic branches.
+
+# Copyright
+
+Copyright (c) 2018 Isaac Priestley. See LICENSE for details.
