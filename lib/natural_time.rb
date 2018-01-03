@@ -110,7 +110,7 @@ module NaturalTime
     #   NaturalTime.distance(-10000, precision: 2)    #=> "2 hours and 46 minutes ago"
     #
     def distance(duration, precision: nil)
-      if duration < 1
+      if duration.to_i < 1
         modifier = "ago"
       else
         modifier = "from now"
